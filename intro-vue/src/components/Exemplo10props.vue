@@ -23,11 +23,15 @@ const props = defineProps({
     border: 1px solid #605e5e;
     padding: 1rem;
     margin: 1rem;
+    max-width: 260px;
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    box-sizing: border-box;
 }
 .ativo {
-        color: green;
+    color: green;
 }
-.inativo{
+.inativo {
     color: red;
 }
 </style>

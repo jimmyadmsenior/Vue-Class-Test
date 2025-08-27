@@ -5,16 +5,16 @@ import ProductTerm from './components/productterm.vue';
 // Exercícios (arquivos na pasta Exercicios)
 const exercises = [
   'Exercicio1.vue',
-  'exercicio1condicional.vue',
-  'exercicio2condicional.vue',
-  'exercicio3.vue',
-  'exercicio5.vue',
-  'exercicio6.vue',
-  'exercicio7.vue',
-  'exercicio8.vue',
-  'exercicio9.vue',
-  'exercicio10.vue',
-  'exercicio11.vue',
+  'Exercicio1condicional.vue',
+  'Exercicio2condicional.vue',
+  'Exercicio3.vue',
+  'Exercicio5.vue',
+  'Exercicio6.vue',
+  'Exercicio7.vue',
+  'Exercicio8.vue',
+  'Exercicio9.vue',
+  'Exercicio10.vue',
+  'Exercicio11.vue',
 ];
 const getExerciseComponent = (file) => defineAsyncComponent(() => import(`./components/Exercicios/${file}`));
 
@@ -22,16 +22,16 @@ const getExerciseComponent = (file) => defineAsyncComponent(() => import(`./comp
 const examples = [
   'Exemplo01Interpolacao.vue',
   'Exemplo02Condicional.vue',
-  'exemplo03for.vue',
-  'exemplo04Html.vue',
-  'exemplo05model.vue',
-  'exemplo06classe.vue',
-  'exemplo07.vue',
-  'exemplo08teclado.vue',
+  'Exemplo03for.vue',
+  'Exemplo04Html.vue',
+  'Exemplo05model.vue',
+  'Exemplo06classe.vue',
+  'Exemplo07.vue',
+  'Exemplo08teclado.vue',
   'Exemplo10propsWrapper.vue',
   'Exemplo11Emits.vue',
-  'exemplo2.vue',
-  'exemplo3.vue',
+  'Exemplo2.vue',
+  'Exemplo3.vue',
 ];
 const getExampleComponent = (file) => defineAsyncComponent(() => import(`./components/${file}`));
 
@@ -211,7 +211,7 @@ onMounted(() => {
                     @click="selectExercise(index)"
                   >
                     <span class="file-icon">></span>
-                    <span class="file-name">{{ file }}</span>
+                    <span class="file-name">{{ file.replace(/^e/i, 'E') }}</span>
                   </div>
                   <div 
                     class="file-entry"
@@ -229,7 +229,7 @@ onMounted(() => {
               <div v-if="selectedExercise !== null" class="output-window">
                 <div class="window-header">
                   <span class="window-title">{{ selectedExercise < exercises.length ? 
-                    exercises[selectedExercise].replace('.vue', '').replace('exercicio', 'Exercício ').replace(/\b\w/g, char => char.toUpperCase()) : 
+                    exercises[selectedExercise].replace('.vue', '').replace(/exercicio/i, 'Exercício ').replace(/\b\w/g, char => char.toUpperCase()) : 
                     'Exercício: Lista de Produtos' }}</span>
                   <span class="window-controls">
                     <span class="control">_</span>
@@ -285,7 +285,7 @@ onMounted(() => {
                     @click="selectExample(index)"
                   >
                     <span class="file-icon">></span>
-                    <span class="file-name">{{ file }}</span>
+                    <span class="file-name">{{ file.replace(/^e/i, 'E') }}</span>
                   </div>
                 </div>
               </div>
