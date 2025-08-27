@@ -1,5 +1,5 @@
 <script setup>
-let nome = 'Diego'
+let nome = 'Jimmy'
 let idade= '18'
 let profissão = 'programador'
 </script>
