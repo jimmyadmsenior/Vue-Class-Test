@@ -1,6 +1,6 @@
 <script setup>
 
-let nome = 'Diego'
+let nome = 'Jimmy'
 let num1= 18
 let num2 = 10
 </script>
