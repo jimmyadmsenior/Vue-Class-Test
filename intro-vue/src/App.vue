@@ -1,9 +1,9 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import ProductTerm from '@components/productterm.vue';
+import ProductTerm from './components/productterm.vue';
 
 // Importar os componentes do arquivo centralizado de importações
-import { exerciseComponents, exampleComponents } from '@components/ComponentImports.js';
+import { exerciseComponents, exampleComponents } from './components/ComponentImports.js';
 
 // Usar os arrays de componentes importados
 const exercises = exerciseComponents;

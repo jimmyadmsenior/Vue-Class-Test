@@ -5,33 +5,34 @@
 // IMPORTANTE: O Vue em produção (especialmente no Vercel) requer que os caminhos de importação
 // correspondam exatamente ao caminho físico no sistema de arquivos, incluindo maiúsculas/minúsculas
 
-// Importações de Exercícios usando path alias (definido em vite.config.js)
-import Exercicio1 from '@exercicios/Exercicio1.vue';
-import Exercicio1Condicional from '@exercicios/Exercicio1condicional.vue';
-import Exercicio2Condicional from '@exercicios/Exercicio2condicional.vue';
-import Exercicio3 from '@exercicios/Exercicio3.vue';
-import Exercicio5 from '@exercicios/Exercicio5.vue';
-import Exercicio6 from '@exercicios/Exercicio6.vue';
-import Exercicio7 from '@exercicios/Exercicio7.vue';
-import Exercicio8 from '@exercicios/Exercicio8.vue';
-import Exercicio9 from '@exercicios/Exercicio9.vue';
-import Exercicio10 from '@exercicios/Exercicio10.vue';
-import Exercicio11 from '@exercicios/Exercicio11.vue';
-import ExercicioComponentes from '@exercicios/ExercicioComponentes.vue';
+// Importações de Exercícios usando caminho relativo direto para garantir compatibilidade
+// Usando o caminho exato como está no sistema de arquivos
+import Exercicio1 from '../components/Exercicios/Exercicio1.vue';
+import Exercicio1Condicional from '../components/Exercicios/Exercicio1condicional.vue';
+import Exercicio2Condicional from '../components/Exercicios/Exercicio2condicional.vue';
+import Exercicio3 from '../components/Exercicios/Exercicio3.vue';
+import Exercicio5 from '../components/Exercicios/Exercicio5.vue';
+import Exercicio6 from '../components/Exercicios/Exercicio6.vue';
+import Exercicio7 from '../components/Exercicios/Exercicio7.vue';
+import Exercicio8 from '../components/Exercicios/Exercicio8.vue';
+import Exercicio9 from '../components/Exercicios/Exercicio9.vue';
+import Exercicio10 from '../components/Exercicios/Exercicio10.vue';
+import Exercicio11 from '../components/Exercicios/Exercicio11.vue';
+import ExercicioComponentes from '../components/Exercicios/ExercicioComponentes.vue';
 
-// Importações de Exemplos usando path alias (definido em vite.config.js)
-import Exemplo01Interpolacao from '@components/Exemplo01Interpolacao.vue';
-import Exemplo02Condicional from '@components/Exemplo02Condicional.vue';
-import Exemplo03For from '@components/exemplo03for.vue'; // Note: lowercase
-import Exemplo04Html from '@components/exemplo04Html.vue'; // Note: lowercase
-import Exemplo05Model from '@components/Exemplo05model.vue';
-import Exemplo06Classe from '@components/exemplo06classe.vue'; // Note: lowercase
-import Exemplo07 from '@components/Exemplo07.vue';
-import Exemplo08Teclado from '@components/Exemplo08teclado.vue';
-import Exemplo10PropsWrapper from '@components/Exemplo10propsWrapper.vue';
-import Exemplo11Emits from '@components/Exemplo11Emits.vue';
-import Exemplo2 from '@components/Exemplo2.vue';
-import Exemplo3 from '@components/Exemplo3.vue';
+// Importações de Exemplos usando caminho relativo direto para garantir compatibilidade
+import Exemplo01Interpolacao from '../components/Exemplo01Interpolacao.vue';
+import Exemplo02Condicional from '../components/Exemplo02Condicional.vue';
+import Exemplo03For from '../components/Exemplo03for.vue'; // Confirma o caso exato do arquivo
+import Exemplo04Html from '../components/Exemplo04Html.vue'; // Confirma o caso exato do arquivo
+import Exemplo05Model from '../components/Exemplo05model.vue';
+import Exemplo06Classe from '../components/Exemplo06classe.vue'; // Confirma o caso exato do arquivo
+import Exemplo07 from '../components/Exemplo07.vue';
+import Exemplo08Teclado from '../components/Exemplo08teclado.vue';
+import Exemplo10PropsWrapper from '../components/Exemplo10propsWrapper.vue';
+import Exemplo11Emits from '../components/Exemplo11Emits.vue';
+import Exemplo2 from '../components/Exemplo2.vue';
+import Exemplo3 from '../components/Exemplo3.vue';
 
 // Exportar todos os componentes de exercícios com seus nomes de arquivo
 export const exerciseComponents = [
