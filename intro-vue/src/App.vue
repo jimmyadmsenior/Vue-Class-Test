@@ -15,6 +15,7 @@ const exercises = [
   'Exercicio9.vue',
   'Exercicio10.vue',
   'Exercicio11.vue',
+  'ExercicioComponentes.vue',
 ];
 const getExerciseComponent = (file) => defineAsyncComponent(() => import(`./components/Exercicios/${file}`));
 
