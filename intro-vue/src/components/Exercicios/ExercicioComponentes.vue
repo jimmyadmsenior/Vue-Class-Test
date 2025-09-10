@@ -29,7 +29,15 @@ function verDetalhesCard(id) {
 
 // Função para copiar comando
 function copiarComando() {
-  alert('Comando copiado para a área de transferência!');
+  const comando = "npm install vue";
+  navigator.clipboard.writeText(comando)
+    .then(() => {
+      alert('Comando copiado para a área de transferência!');
+    })
+    .catch(err => {
+      console.error('Erro ao copiar comando: ', err);
+      alert('Não foi possível copiar o comando. Erro: ' + err);
+    });
 }
 
 // Dados para os cards
@@ -118,7 +126,7 @@ const cards = [
         >
           <div class="custom-content">
             <div class="terminal-output">
-              <div class="line">$ npm install vue</div>
+              <div class="line command">$ npm install vue</div>
               <div class="line success">+ vue@3.2.47</div>
               <div class="line success">added 1 package, done in 2.5s</div>
             </div>
@@ -233,6 +241,12 @@ const cards = [
 
 .line {
   margin: 0.25rem 0;
+}
+
+.command {
+  color: var(--primary);
+  font-weight: bold;
+  user-select: all; /* Makes the text easily selectable */
 }
 
 .success {
