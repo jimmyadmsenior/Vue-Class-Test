@@ -4,37 +4,36 @@ import ProductTerm from './components/productterm.vue';
 
 // Exercícios (arquivos na pasta Exercicios)
 const exercises = [
-  'Exercicio1.vue',
-  'Exercicio1condicional.vue',
-  'Exercicio2condicional.vue',
-  'Exercicio3.vue',
-  'Exercicio5.vue',
-  'Exercicio6.vue',
-  'Exercicio7.vue',
-  'Exercicio8.vue',
-  'Exercicio9.vue',
-  'Exercicio10.vue',
-  'Exercicio11.vue',
-  'ExercicioComponentes.vue',
+  { name: 'Exercicio1.vue', component: () => import('./components/Exercicios/Exercicio1.vue') },
+  { name: 'Exercicio1condicional.vue', component: () => import('./components/Exercicios/Exercicio1condicional.vue') },
+  { name: 'Exercicio2condicional.vue', component: () => import('./components/Exercicios/Exercicio2condicional.vue') },
+  { name: 'Exercicio3.vue', component: () => import('./components/Exercicios/Exercicio3.vue') },
+  { name: 'Exercicio5.vue', component: () => import('./components/Exercicios/Exercicio5.vue') },
+  { name: 'Exercicio6.vue', component: () => import('./components/Exercicios/Exercicio6.vue') },
+  { name: 'Exercicio7.vue', component: () => import('./components/Exercicios/Exercicio7.vue') },
+  { name: 'Exercicio8.vue', component: () => import('./components/Exercicios/Exercicio8.vue') },
+  { name: 'Exercicio9.vue', component: () => import('./components/Exercicios/Exercicio9.vue') },
+  { name: 'Exercicio10.vue', component: () => import('./components/Exercicios/Exercicio10.vue') },
+  { name: 'Exercicio11.vue', component: () => import('./components/Exercicios/Exercicio11.vue') },
+  { name: 'ExercicioComponentes.vue', component: () => import('./components/Exercicios/ExercicioComponentes.vue') },
 ];
-const getExerciseComponent = (file) => defineAsyncComponent(() => import(`./components/Exercicios/${file}`));
 
 // Exemplos (arquivos na pasta components, exceto Exercicios)
 const examples = [
-  'Exemplo01Interpolacao.vue',
-  'Exemplo02Condicional.vue',
-  'Exemplo03for.vue',
-  'Exemplo04Html.vue',
-  'Exemplo05model.vue',
-  'Exemplo06classe.vue',
-  'Exemplo07.vue',
-  'Exemplo08teclado.vue',
-  'Exemplo10propsWrapper.vue',
-  'Exemplo11Emits.vue',
-  'Exemplo2.vue',
-  'Exemplo3.vue',
+  { name: 'Exemplo01Interpolacao.vue', component: () => import('./components/Exemplo01Interpolacao.vue') },
+  { name: 'Exemplo02Condicional.vue', component: () => import('./components/Exemplo02Condicional.vue') },
+  { name: 'Exemplo03for.vue', component: () => import('./components/Exemplo03for.vue') },
+  { name: 'Exemplo04Html.vue', component: () => import('./components/Exemplo04Html.vue') },
+  { name: 'Exemplo05model.vue', component: () => import('./components/Exemplo05model.vue') },
+  { name: 'Exemplo06classe.vue', component: () => import('./components/Exemplo06classe.vue') },
+  { name: 'Exemplo07.vue', component: () => import('./components/Exemplo07.vue') },
+  { name: 'Exemplo08teclado.vue', component: () => import('./components/Exemplo08teclado.vue') },
+  { name: 'Exemplo10propsWrapper.vue', component: () => import('./components/Exemplo10propsWrapper.vue') },
+  { name: 'Exemplo11Emits.vue', component: () => import('./components/Exemplo11Emits.vue') },
+  { name: 'Exemplo2.vue', component: () => import('./components/Exemplo2.vue') },
+  { name: 'Exemplo3.vue', component: () => import('./components/Exemplo3.vue') },
 ];
-const getExampleComponent = (file) => defineAsyncComponent(() => import(`./components/${file}`));
+const getExampleComponent = (index) => defineAsyncComponent(examples[index].component);
 
 const mainMenu = ref('exercicios');
 const message = ref('');
@@ -206,13 +205,13 @@ onMounted(() => {
                 <div v-if="exercisesExpanded" class="directory-contents">
                   <div 
                     v-for="(file, index) in exercises" 
-                    :key="file" 
+                    :key="file.name" 
                     class="file-entry"
                     :class="{ active: selectedExercise === index }"
                     @click="selectExercise(index)"
                   >
                     <span class="file-icon">></span>
-                    <span class="file-name">{{ file.replace(/^e/i, 'E') }}</span>
+                    <span class="file-name">{{ file.name.replace(/^e/i, 'E') }}</span>
                   </div>
                   <div 
                     class="file-entry"
@@ -240,7 +239,7 @@ onMounted(() => {
                 </div>
                 <div class="window-content">
                   <template v-if="selectedExercise < exercises.length">
-                    <component :is="getExerciseComponent(exercises[selectedExercise])" />
+                    <component :is="getExerciseComponent(selectedExercise)" />
                   </template>
                   <template v-else>
                     <div class="products-list">
@@ -280,13 +279,13 @@ onMounted(() => {
                 <div v-if="examplesExpanded" class="directory-contents">
                   <div 
                     v-for="(file, index) in examples" 
-                    :key="file" 
+                    :key="file.name" 
                     class="file-entry"
                     :class="{ active: selectedExample === index }"
                     @click="selectExample(index)"
                   >
                     <span class="file-icon">></span>
-                    <span class="file-name">{{ file.replace(/^e/i, 'E') }}</span>
+                    <span class="file-name">{{ file.name.replace(/^e/i, 'E') }}</span>
                   </div>
                 </div>
               </div>
@@ -303,7 +302,7 @@ onMounted(() => {
                   </span>
                 </div>
                 <div class="window-content">
-                  <component :is="getExampleComponent(examples[selectedExample])" />
+                  <component :is="getExampleComponent(selectedExample)" />
                 </div>
               </div>
               <div v-else class="empty-state">
