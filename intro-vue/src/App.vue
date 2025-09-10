@@ -1,40 +1,71 @@
 <script setup>
-import { ref, defineAsyncComponent, onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import ProductTerm from './components/productterm.vue';
 
 // Exercícios (arquivos na pasta Exercicios)
+// Usando a abordagem de importação tradicional para garantir compatibilidade com o Vercel
+import Exercicio1 from './components/Exercicios/Exercicio1.vue';
+import Exercicio1condicional from './components/Exercicios/Exercicio1condicional.vue';
+import Exercicio2condicional from './components/Exercicios/Exercicio2condicional.vue';
+import Exercicio3 from './components/Exercicios/Exercicio3.vue';
+import Exercicio5 from './components/Exercicios/Exercicio5.vue';
+import Exercicio6 from './components/Exercicios/Exercicio6.vue';
+import Exercicio7 from './components/Exercicios/Exercicio7.vue';
+import Exercicio8 from './components/Exercicios/Exercicio8.vue';
+import Exercicio9 from './components/Exercicios/Exercicio9.vue';
+import Exercicio10 from './components/Exercicios/Exercicio10.vue';
+import Exercicio11 from './components/Exercicios/Exercicio11.vue';
+import ExercicioComponentes from './components/Exercicios/ExercicioComponentes.vue';
+
 const exercises = [
-  'Exercicio1.vue',
-  'Exercicio1condicional.vue',
-  'Exercicio2condicional.vue',
-  'Exercicio3.vue',
-  'Exercicio5.vue',
-  'Exercicio6.vue',
-  'Exercicio7.vue',
-  'Exercicio8.vue',
-  'Exercicio9.vue',
-  'Exercicio10.vue',
-  'Exercicio11.vue',
-  'ExercicioComponentes.vue',
+  { name: 'Exercicio1.vue', component: Exercicio1 },
+  { name: 'Exercicio1condicional.vue', component: Exercicio1condicional },
+  { name: 'Exercicio2condicional.vue', component: Exercicio2condicional },
+  { name: 'Exercicio3.vue', component: Exercicio3 },
+  { name: 'Exercicio5.vue', component: Exercicio5 },
+  { name: 'Exercicio6.vue', component: Exercicio6 },
+  { name: 'Exercicio7.vue', component: Exercicio7 },
+  { name: 'Exercicio8.vue', component: Exercicio8 },
+  { name: 'Exercicio9.vue', component: Exercicio9 },
+  { name: 'Exercicio10.vue', component: Exercicio10 },
+  { name: 'Exercicio11.vue', component: Exercicio11 },
+  { name: 'ExercicioComponentes.vue', component: ExercicioComponentes },
 ];
-const getExerciseComponent = (file) => defineAsyncComponent(() => import(`./components/Exercicios/${file}`));
 
 // Exemplos (arquivos na pasta components, exceto Exercicios)
+// Usando a abordagem de importação tradicional para garantir compatibilidade com o Vercel
+import Exemplo01Interpolacao from './components/Exemplo01Interpolacao.vue';
+import Exemplo02Condicional from './components/Exemplo02Condicional.vue';
+import Exemplo03for from './components/exemplo03for.vue'; // Cuidado com o case
+import Exemplo04Html from './components/exemplo04Html.vue'; // Cuidado com o case
+import Exemplo05model from './components/Exemplo05model.vue';
+import Exemplo06classe from './components/exemplo06classe.vue'; // Cuidado com o case
+import Exemplo07 from './components/Exemplo07.vue';
+import Exemplo08teclado from './components/Exemplo08teclado.vue';
+import Exemplo10propsWrapper from './components/Exemplo10propsWrapper.vue';
+import Exemplo11Emits from './components/Exemplo11Emits.vue';
+import Exemplo2 from './components/Exemplo2.vue';
+import Exemplo3 from './components/Exemplo3.vue';
+
 const examples = [
-  'Exemplo01Interpolacao.vue',
-  'Exemplo02Condicional.vue',
-  'Exemplo03for.vue',
-  'Exemplo04Html.vue',
-  'Exemplo05model.vue',
-  'Exemplo06classe.vue',
-  'Exemplo07.vue',
-  'Exemplo08teclado.vue',
-  'Exemplo10propsWrapper.vue',
-  'Exemplo11Emits.vue',
-  'Exemplo2.vue',
-  'Exemplo3.vue',
+  { name: 'Exemplo01Interpolacao.vue', component: Exemplo01Interpolacao },
+  { name: 'Exemplo02Condicional.vue', component: Exemplo02Condicional },
+  { name: 'Exemplo03for.vue', component: Exemplo03for },
+  { name: 'Exemplo04Html.vue', component: Exemplo04Html },
+  { name: 'Exemplo05model.vue', component: Exemplo05model },
+  { name: 'Exemplo06classe.vue', component: Exemplo06classe },
+  { name: 'Exemplo07.vue', component: Exemplo07 },
+  { name: 'Exemplo08teclado.vue', component: Exemplo08teclado },
+  { name: 'Exemplo10propsWrapper.vue', component: Exemplo10propsWrapper },
+  { name: 'Exemplo11Emits.vue', component: Exemplo11Emits },
+  { name: 'Exemplo2.vue', component: Exemplo2 },
+  { name: 'Exemplo3.vue', component: Exemplo3 },
 ];
-const getExampleComponent = (file) => defineAsyncComponent(() => import(`./components/${file}`));
+// Esta definição foi movida para abaixo
+
+// Funções para obter os componentes
+const getExerciseComponent = (index) => exercises[index].component;
+const getExampleComponent = (index) => examples[index].component;
 
 const mainMenu = ref('exercicios');
 const message = ref('');
@@ -206,13 +237,13 @@ onMounted(() => {
                 <div v-if="exercisesExpanded" class="directory-contents">
                   <div 
                     v-for="(file, index) in exercises" 
-                    :key="file" 
+                    :key="file.name" 
                     class="file-entry"
                     :class="{ active: selectedExercise === index }"
                     @click="selectExercise(index)"
                   >
                     <span class="file-icon">></span>
-                    <span class="file-name">{{ file.replace(/^e/i, 'E') }}</span>
+                    <span class="file-name">{{ file.name.replace(/^e/i, 'E') }}</span>
                   </div>
                   <div 
                     class="file-entry"
@@ -240,7 +271,7 @@ onMounted(() => {
                 </div>
                 <div class="window-content">
                   <template v-if="selectedExercise < exercises.length">
-                    <component :is="getExerciseComponent(exercises[selectedExercise])" />
+                    <component :is="getExerciseComponent(selectedExercise)" />
                   </template>
                   <template v-else>
                     <div class="products-list">
@@ -280,13 +311,13 @@ onMounted(() => {
                 <div v-if="examplesExpanded" class="directory-contents">
                   <div 
                     v-for="(file, index) in examples" 
-                    :key="file" 
+                    :key="file.name" 
                     class="file-entry"
                     :class="{ active: selectedExample === index }"
                     @click="selectExample(index)"
                   >
                     <span class="file-icon">></span>
-                    <span class="file-name">{{ file.replace(/^e/i, 'E') }}</span>
+                    <span class="file-name">{{ file.name.replace(/^e/i, 'E') }}</span>
                   </div>
                 </div>
               </div>
@@ -303,7 +334,7 @@ onMounted(() => {
                   </span>
                 </div>
                 <div class="window-content">
-                  <component :is="getExampleComponent(examples[selectedExample])" />
+                  <component :is="getExampleComponent(selectedExample)" />
                 </div>
               </div>
               <div v-else class="empty-state">
